@@ -140,7 +140,7 @@ ipwd <- function() .rirods$current_dir
 #' @param recurse Recursively list. Defaults to `FALSE`.
 #' @param ticket A valid iRODS ticket string. Defaults to `NULL`.
 #' @param message Show message when empty collection. Default to `FALSE`.
-#' @param limit Number of records to show per page.
+#' @param limit Number of records to show. To show all records, provide `NULL`.
 #' @param verbose Whether information should be printed about the HTTP request
 #'    and response. Defaults to `FALSE`.
 #'
@@ -235,8 +235,10 @@ ils <- function(
     }
   }
 
-  limit_maximum_number_of_rows_catalog(irods_zone_overview, limit) |>
-    new_irods_df()
+  if (!is.null(limit)) {
+    irods_zone_overview <- limit_maximum_number_of_rows_catalog(irods_zone_overview, limit)
+  }
+  new_irods_df(irods_zone_overview)
 }
 
 make_ils_stat <- function(lpaths) {
