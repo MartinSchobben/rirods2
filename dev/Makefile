@@ -2,7 +2,7 @@
 .ONESHELL:
 SHELL = /bin/bash
 PATH_MODULES := ../inst/irods_demo/.
-IRODS_MODULES := nginx http icommands catalog
+IRODS_MODULES := nginx http icommands catalog minio
 SPACE = $(eval) $(eval)
 DOCKER_MODULES = $(subst $(SPACE),\|,$(IRODS_MODULES))
 DOCKER_MODULES_REGEX = ".*\($(DOCKER_MODULES)\).*"

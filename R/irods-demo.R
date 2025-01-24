@@ -262,7 +262,7 @@ check_docker <- function(verbose = TRUE) {
   !(Sys.which("bash") == "" || Sys.which("docker") == "" || docker_version == "")
 }
 
-irods_containers_ref <- function(services = c("nginx", "http-api", "icommands", "catalog")) {
+irods_containers_ref <- function(services = c("nginx", "http-api", "icommands", "catalog", "minio")) {
   docker_compose_service_names = extract_irods_services_names(services)
   paste0(names(docker_compose_service_names), "-", docker_compose_service_names[[1]], "-1")
 }
@@ -273,7 +273,8 @@ irods_images <- c(
   "irods-demo-irods-catalog-provider",
   "irods-demo-irods-client-icommands",
   "irods-demo-nginx-reverse-proxy",
-  "irods/irods_http_api"
+  "irods/irods_http_api",
+  "irods-demo-minio"
 )
 
 #' Launch iRODS from Alternative Directory
